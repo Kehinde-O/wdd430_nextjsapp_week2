@@ -20,7 +20,7 @@ function getLatestInvoices() {
   // Get the 5 most recent invoices, join with customer data
   return invoices
     .slice()
-    .sort((a, b) => new Date(b.date) - new Date(a.date))
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
     .slice(0, 5)
     .map((inv, i) => {
       const customer = customers.find((c) => c.id === inv.customer_id);
@@ -35,9 +35,5 @@ function getLatestInvoices() {
 }
 
 export default function Page() {
-  const { numberOfCustomers, numberOfInvoices, totalPaidInvoices, totalPendingInvoices } = getCardData();
-  const latestInvoices = getLatestInvoices();
-  return (
-    <p>Dashboard</p>
-  );
+  return <p>Dashboard Page</p>;
 } 
